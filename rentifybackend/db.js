@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 // Update the mongoURI to include the database name 'rentify'
-const mongoURI = "mongodb+srv://rentify:LwuZAbIq5cK75jlC@clusterrentify.mzlteyy.mongodb.net/rentify?retryWrites=true&w=majority";
+const mongoURI = process.env.URI
 
 const connectToMongoose = () => {
     mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
