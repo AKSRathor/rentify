@@ -1,7 +1,7 @@
+import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { Divider, Typography, Flex, Tag, Button } from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
-import { useParams } from 'react-router-dom';
 const reqArr = {
     "key": "1",
     "name": "John Brown",
