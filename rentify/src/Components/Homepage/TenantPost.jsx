@@ -12,7 +12,6 @@ const layout = {
 const handleSubmitPost = (e) => {
     console.log(e)
 }
-/* eslint-disable no-template-curly-in-string */
 const validateMessages = {
     required: '${label} is required!',
     types: {
@@ -27,21 +26,21 @@ const validateMessages = {
 
 const onFinish = async(values) => {
     console.log(values.user);
-    try {
-        const response = await fetch("http://127.0.0.1:5000/api/auth/createuser", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name: myNameReg, username: userNameReg, password: passReg, email: emailReg })
-        })
-        let xres = await response.json()
-        if (xres.success) {
-            history("/post")
-        }
-        console.log("My response ", xres)
-        localStorage.setItem("rentifyusername", xres)
-    } catch (error) {
+    // try {
+    //     const response = await fetch("http://127.0.0.1:5000/api/auth/createuser", {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({ name: myNameReg, username: userNameReg, password: passReg, email: emailReg })
+    //     })
+    //     let xres = await response.json()
+    //     if (xres.success) {
+    //         history("/post")
+    //     }
+    //     console.log("My response ", xres)
+    //     localStorage.setItem("rentifyusername", xres)
+    // } catch (error) {
 
     }
 };
