@@ -1,11 +1,11 @@
 const express = require("express")
-const User = require("../models/Auth")
+const User = require("../Models/user")
 const router = express.Router()
 var bcrypt = require("bcryptjs")
 var jwt = require('jsonwebtoken');
 const JWT_SECRET = "instaid"
 const { body, validationResult } = require('express-validator');//validates the data from the server side
-const RequestB = require("../Models/Request")
+const RequestB = require("../Models/aksrent")
 
 
 router.post('/createuser', [
