@@ -16,8 +16,8 @@ app.get("/", (req, res)=>{
   res.send("Hello this is backend")
 })
   
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/post', require('./routes/post'));
+app.use('/api/auth', require('./routes/auth.js'));
+app.use('/api/post', require('./routes/post.js'));
 
 app.listen(port, () => {
   console.log(`Successfully connected at: ${port}`);
