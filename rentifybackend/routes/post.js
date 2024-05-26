@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router()
-const post = require("../Models/post")
+const post = require("../Models/post.js")
 const { body, validationResult } = require("express-validator")
-const user = require("../Models/user")
+// const user = require("../Models/user")
 
 router.post("/createpost", async (req, res) => {
     try {
