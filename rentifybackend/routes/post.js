@@ -1,6 +1,6 @@
+const Post = require("../Models/post.js")
 const express = require("express")
 const router = express.Router()
-const post = require("../Models/post.js")
 const { body, validationResult } = require("express-validator")
 // const user = require("../Models/user")
 
@@ -12,7 +12,7 @@ router.post("/createpost", async (req, res) => {
             return res.status(400).json({ errors: errors.array() })
         }
 
-        const pst = new post({
+        const pst = new Post({
             ownerName, desc, tags, price, address
         })
         const sentMsg = await pst.save()
@@ -28,7 +28,7 @@ router.post("/createpost", async (req, res) => {
 router.post("/fetchallpost", async (req, res) => {
     try {
         console.log("inside")
-        const AllMsg = await post.find()
+        const AllMsg = await Post.find()
         res.json(AllMsg)
 
     } catch (error) {
@@ -40,7 +40,7 @@ router.post("/fetchallpost", async (req, res) => {
 router.post("/showpost", async (req, res) => {
     try {
         const { postid } = req.body;
-        const myPost = await post.find({ _id: postid })
+        const myPost = await Post.find({ _id: postid })
         res.send(myPost)
 
     } catch (error) {
