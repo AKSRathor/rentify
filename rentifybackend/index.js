@@ -12,6 +12,9 @@ connectToMongoose();
 const port = 5000;
 
 app.use(express.json());
+app.get("/", (req, res)=>{
+  res.send("Hello this is backend")
+})
   
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/post', require('./routes/post'));
