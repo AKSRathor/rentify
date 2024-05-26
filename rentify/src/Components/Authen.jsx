@@ -24,48 +24,63 @@ const Authen = () => {
         onChange,
     };
 
-    const handleOnReg = async()=>{
-        if(!login){
+    const handleOnReg = async () => {
+        if (!login) {
 
-            const response = await fetch("http://127.0.0.1:5000/api/post/createpost", {
+            const response = await fetch("http://127.0.0.1:5000/api/auth/createuser", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ ownername:myNameReg, desc:userNameReg, tag:passReg, price:emailReg })
+                body: JSON.stringify({ name: myNameReg, username: userNameReg, password: passReg, email: emailReg })
             })
             let xres = await response.json()
-            if(xres.success){
+            if (xres.success) {
+                localStorage.setItem("rentifyname", myNameReg)
+                localStorage.setItem("rentifyemail", emailReg)
                 history("/post")
             }
             console.log("My response ", xres)
-            localStorage.setItem("rentifyusername", xres)
         }
-        else{
-
+        else {
+            const response = await fetch("http://127.0.0.1:5000/api/auth/login", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username: username, password: password })
+            })
+            console.log("here login")
+            let xres = await response.json()
+            if (xres.success) {
+                localStorage.setItem("rentifyname", myNameReg)
+                localStorage.setItem("rentifyemail", xres.email)
+                history("/post")
+            }
+            console.log("My response ", xres)
         }
     }
-    const handleAfterOTPSent = async(e) => {
+    const handleAfterOTPSent = async (e) => {
         e.preventDefault();
         setEmailWritten(true)
         let x = Math.floor(100000 + Math.random() * 900000);
         setMySetOtp(x)
-        const mybody ={
+        const mybody = {
             otp: x,
-            to_name:userNameReg,
-            to_email:emailReg
-        }   
+            to_name: userNameReg,
+            to_email: emailReg
+        }
         await emailjs
-                      .send("service_ypyp3vd", "template_vp87wsw", mybody, "rYfioaqahG253YRC1")
-                      .then((response) => {
-                        console.log('Email sent successfully:', response);
-                        alert('OTP sent successfully!');
+            .send("service_ypyp3vd", "template_vp87wsw", mybody, "rYfioaqahG253YRC1")
+            .then((response) => {
+                console.log('Email sent successfully:', response);
+                alert('OTP sent successfully!');
 
-                    })
-                      .catch((error) => {
-                        console.error('Error sending email:', error);
-                        alert('Error sending email');
-                      });
+            })
+            .catch((error) => {
+                console.error('Error sending email:', error);
+                alert('Error sending email');
+            });
     }
 
     const onFinish = (values) => {
@@ -99,7 +114,7 @@ const Authen = () => {
                     <Form.Item
                         label="Username"
                         name="username"
-                        onChange = {((e)=>{setUsername(e.target.value)})}
+                        onChange={((e) => { setUsername(e.target.value) })}
                         rules={[
                             {
 
@@ -113,7 +128,7 @@ const Authen = () => {
                     <Form.Item
                         label="Password"
                         name="password"
-                        onChange = {((e)=>{setPassword(e.target.value)})}
+                        onChange={((e) => { setPassword(e.target.value) })}
                         rules={[
                             {
 
@@ -140,7 +155,7 @@ const Authen = () => {
                                 span: 16,
                             }}
                         >
-                            <Button type="primary" htmlType="submit">
+                            <Button onClick={handleOnReg} type="primary" htmlType="submit">
                                 Submit
                             </Button>
                         </Form.Item>
@@ -167,7 +182,7 @@ const Authen = () => {
                     <Form.Item
                         label="Name"
                         name="text"
-                        onChange = {((e)=>{setMyNameReg(e.target.value)})}
+                        onChange={((e) => { setMyNameReg(e.target.value) })}
                         rules={[
                             {
 
@@ -180,7 +195,7 @@ const Authen = () => {
                     <Form.Item
                         label="Username"
                         name="username"
-                        onChange = {((e)=>{setUserNameReg(e.target.value)})}
+                        onChange={((e) => { setUserNameReg(e.target.value) })}
                         rules={[
                             {
 
@@ -194,7 +209,7 @@ const Authen = () => {
                     <Form.Item
                         label="Password"
                         name="password"
-                        onChange = {((e)=>{setPassReg(e.target.value)})}
+                        onChange={((e) => { setPassReg(e.target.value) })}
                         rules={[
                             {
 
@@ -207,7 +222,7 @@ const Authen = () => {
                     <Form.Item
                         label="Email"
                         name="email"
-                        onChange = {((e)=>{setEmailReg(e.target.value)})}
+                        onChange={((e) => { setEmailReg(e.target.value) })}
                         rules={[
                             {
 

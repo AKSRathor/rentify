@@ -85,7 +85,8 @@ router.post("/login", [
             success = true;
             const idOfUser = user._id
             const nameOfUser = user.name
-            res.send({ authtoken, success, username, idOfUser, nameOfUser })
+            const email = user.email
+            res.send({ authtoken, success, username, idOfUser, nameOfUser, email })
         } catch (error) {
             console.error(error.message);
             res.status(500).send("Internal server error")
