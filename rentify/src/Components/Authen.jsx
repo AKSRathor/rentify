@@ -53,7 +53,7 @@ const Authen = () => {
             console.log("here login")
             let xres = await response.json()
             if (xres.success) {
-                localStorage.setItem("rentifyname", myNameReg)
+                localStorage.setItem("rentifyname", xres.nameOfUser)
                 localStorage.setItem("rentifyemail", xres.email)
                 history("/post")
             }

@@ -111,6 +111,19 @@ router.post("/sendreq", async (req, res) => {
     }
 })
 
+router.post("/fetchallreq", async (req, res) => {
+    try {
+
+        const {  to } = req.body
+        const rqstRes = await RequestB.find({to})
+        res.json(rqstRes)
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal server error")
+
+    }
+})
+
 
 router.post("/fetchperson", async(req, res)=>{
     try {

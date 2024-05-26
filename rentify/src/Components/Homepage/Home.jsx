@@ -6,6 +6,7 @@ import TenantPost from './TenantPost'
 
 const Home = () => {
   const [tenant, setTenant] = useState(true)
+  const [postId, setPostId] = useState("")
   return (
     <div>
         <HomeNav tenant = {tenant} setTenant = {setTenant}/>

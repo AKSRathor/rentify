@@ -8,6 +8,7 @@ import {
   Route,
   // Link,
 } from "react-router-dom";
+import More from './Components/Homepage/More';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Authen />} />
             <Route exact path="/post" element={<Home />} />
+            <Route exact path= "/post/:postid" element={<More />}/>
           </Routes>
         </BrowserRouter>
 

@@ -1,53 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Space, Table, Tag } from 'antd';
-const columns = [
-  {
-    title: 'Owner',
-    dataIndex: 'ownerName',
-    key: 'ownerName',
-    render: (text) => <a>{text}</a>,
-  },
-  {
-    title: 'Pricing ($K)',
-    dataIndex: 'price',
-    key: 'price',
-  },
-  {
-    title: 'Location',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (_, { tags }) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (_, record) => (
-      <Space size="middle">
-        <a>Request {record.name}</a>
-        <a>More...</a>
-      </Space>
-    ),
-  },
-];
+import { useNavigate } from 'react-router-dom';
+
+
 const data = [
   {
     "key": "1",
@@ -364,23 +319,72 @@ const data = [
 ]
   ;
 const BottomContents = () => {
+  let history = useNavigate()
+  const columns = [
+    {
+      title: 'Owner',
+      dataIndex: 'ownerName',
+      key: 'ownerName',
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: 'Pricing ($K)',
+      dataIndex: 'price',
+      key: 'price',
+    },
+    {
+      title: 'Location',
+      dataIndex: 'address',
+      key: 'address',
+    },
+    {
+      title: 'Tags',
+      key: 'tags',
+      dataIndex: 'tags',
+      render: (_, { tags }) => (
+        <>
+          {tags.map((tag) => {
+            let color = tag.length > 5 ? 'geekblue' : 'green';
+            if (tag === 'loser') {
+              color = 'volcano';
+            }
+            return (
+              <Tag color={color} key={tag}>
+                {tag.toUpperCase()}
+              </Tag>
+            );
+          })}
+        </>
+      ),
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (_, record) => (
+        <Space size="middle">
+          <a>Request {record.name}</a>
+          <a onClick={((e) => { history("/post/" + String(record._id)) })}>More...</a>
+        </Space>
+      ),
+    },
+  ];
   const [myColData, setMyColData] = useState([{ _id: "", ownerName: "", price: "", address: "", tags: [], desc: "" }])
   useEffect(() => {
-    
-    (async()=>{
-      
+
+    (async () => {
+
       const response = await fetch("http://127.0.0.1:5000/api/post/fetchallpost", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ }),
+        body: JSON.stringify({}),
       })
       let xres = await response.json()
       setMyColData(xres)
       console.log(xres, "is teh output all users")
     })
-    ();
+      ();
 
     return () => {
 
