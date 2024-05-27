@@ -1,4 +1,4 @@
-const Post = require("../Models/post.js")
+const Post = require("../Models/postshare")
 const express = require("express")
 const router = express.Router()
 const { body, validationResult } = require("express-validator")
