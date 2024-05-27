@@ -4,14 +4,14 @@ import BottomContents from './BottomContents'
 import More from './More'
 import TenantPost from './TenantPost'
 
-const Home = () => {
+const Home = (props) => {
   const [tenant, setTenant] = useState(true)
   const [postId, setPostId] = useState("")
   return (
     <div>
-        <HomeNav tenant = {tenant} setTenant = {setTenant}/>
-        {!tenant?<BottomContents/>:
-        <TenantPost/>}
+        <HomeNav host = {props.host} tenant = {tenant} setTenant = {setTenant}/>
+        {!tenant?<BottomContents host = {props.host}/>:
+        <TenantPost host = {props.host}/>}
         {/* <More/> */}
     </div>
   )

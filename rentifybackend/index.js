@@ -6,7 +6,6 @@ const cors = require('cors');
 app.use(cors());
 
 
-
 connectToMongoose();
 
 const port = 5000;

@@ -318,7 +318,7 @@ const data = [
   },
 ]
   ;
-const BottomContents = () => {
+const BottomContents = (props) => {
   let history = useNavigate()
   const columns = [
     {
@@ -373,7 +373,7 @@ const BottomContents = () => {
 
     (async () => {
 
-      const response = await fetch("http://127.0.0.1:5000/api/post/fetchallpost", {
+      const response = await fetch(props.host+"api/post/fetchallpost", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

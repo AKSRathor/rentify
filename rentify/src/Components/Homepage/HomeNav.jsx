@@ -7,7 +7,7 @@ const HomeNav = (props) => {
     const [requestArr, setRequestArr] = useState([{ from: "", to: "", postid: "" }])
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = async () => {
-        const response = await fetch("http://127.0.0.1:5000/api/auth/fetchallreq", {
+        const response = await fetch(props.host+"api/auth/fetchallreq", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -14,7 +14,7 @@ const reqArr = {
 const More = (props) => {
     const {postid} = useParams()
     const handleOnSendRequest = async()=>{
-        const response = await fetch("http://127.0.0.1:5000/api/auth/sendreq", {
+        const response = await fetch(props.host+"api/auth/sendreq", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ const More = (props) => {
         // console.log("The params is ", postid)
 
         (async () => {
-            const response = await fetch("http://127.0.0.1:5000/api/post/showpost", {
+            const response = await fetch(props.host+"api/post/showpost", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

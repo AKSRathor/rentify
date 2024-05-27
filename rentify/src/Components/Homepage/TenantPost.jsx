@@ -4,7 +4,7 @@ import { Button, Form, Input, InputNumber, Select, message, Space } from 'antd';
 
 
 
-const TenantPost = () => {
+const TenantPost = (props) => {
     const [messageApi, contextHolder] = message.useMessage();
     
     const layout = {
@@ -48,8 +48,9 @@ const TenantPost = () => {
     const onFinish = async (values) => {
         
         console.log(values.user);
+        console.log("fetch link ", props.host+"api/post/createpost")
         try {
-            const response = await fetch("http://127.0.0.1:5000/api/post/createpost", {
+            const response = await fetch(props.host+"api/post/createpost", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

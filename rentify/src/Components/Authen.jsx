@@ -5,7 +5,7 @@ import { Button, Checkbox, Form, Input, Space, Typography } from 'antd';
 const { Title } = Typography;
 
 
-const Authen = () => {
+const Authen = (props) => {
     const [emailWritten, setEmailWritten] = useState(false)
     const [mySetOtp, setMySetOtp] = useState("infinity")
 
@@ -27,7 +27,7 @@ const Authen = () => {
     const handleOnReg = async () => {
         if (!login) {
 
-            const response = await fetch("http://127.0.0.1:5000/api/auth/createuser", {
+            const response = await fetch(props.host+"api/auth/createuser", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const Authen = () => {
             console.log("My response ", xres)
         }
         else {
-            const response = await fetch("http://127.0.0.1:5000/api/auth/login", {
+            const response = await fetch(props.host+"api/auth/login", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
