@@ -8,12 +8,15 @@ import {
   Route,
   // Link,
 } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react"
+
 import More from './Components/Homepage/More';
 
 const host = "https://rentifybackend-git-main-aksrathors-projects.vercel.app/"
 function App() {
   return (
     <div className="App">
+       <Analytics />
       <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<Authen host = {host} />} />
